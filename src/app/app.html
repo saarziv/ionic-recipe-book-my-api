@@ -1,1 +1,42 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="nav">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-grid>
+      <ion-row *ngIf="!isAuthenticated">
+        <ion-col>
+          <button ion-item (click)="onLoad(signInPage)">
+            <ion-icon name="log-in"></ion-icon> Signin
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="!isAuthenticated">
+        <ion-col>
+          <button ion-item icon-left (click)="onLoad(signUpPage)">
+            <ion-icon name="person"></ion-icon> Signup
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="isAuthenticated">
+        <ion-col>
+          <button ion-item icon-left (click)="onLoad(tabsPage)">
+            <ion-icon name="book"></ion-icon> ShoppingList
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="isAuthenticated">
+        <ion-col>
+          <button ion-item  (click)="onLogout()">
+            <ion-icon name="log-out"></ion-icon> Signout
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+</ion-menu>
+
+<ion-nav [root]="signInPage" #nav></ion-nav>
+<!--<ion-nav [root]="tabsPage"></ion-nav>-->
