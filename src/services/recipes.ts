@@ -38,27 +38,27 @@ export class RecipesService {
     this.recipes.splice(index,1);
   }
 
-  storeRecipeFireBase(token: string,uid: string): Observable<any> {
-    return this.httpClient
-      .put(`${this.url}/${uid}/recipes.json?auth=${token}`,this.recipes)
-  }
-
-  loadRecipeFireBase(token: string,uid: string) {
-    return this.httpClient
-      .get(`${this.url}/${uid}/recipes.json?auth=${token}`)
-      .do((recipes: Recipe[]) => {
-        if(recipes) {
-          this.recipes = recipes;
-          this.recipes.forEach((r) => {
-            if(!r.hasOwnProperty('ingredients')){
-              r.ingredients = [];
-            }
-          })
-        } else {
-          this.recipes = [];
-        }
-      });
-  }
+  // storeRecipeFireBase(token: string,uid: string): Observable<any> {
+  //   return this.httpClient
+  //     .put(`${this.url}/${uid}/recipes.json?auth=${token}`,this.recipes)
+  // }
+  //
+  // loadRecipeFireBase(token: string,uid: string) {
+  //   return this.httpClient
+  //     .get(`${this.url}/${uid}/recipes.json?auth=${token}`)
+  //     .do((recipes: Recipe[]) => {
+  //       if(recipes) {
+  //         this.recipes = recipes;
+  //         this.recipes.forEach((r) => {
+  //           if(!r.hasOwnProperty('ingredients')){
+  //             r.ingredients = [];
+  //           }
+  //         })
+  //       } else {
+  //         this.recipes = [];
+  //       }
+  //     });
+  // }
 
 
 }

@@ -36,16 +36,16 @@ export class ShoppingListService {
     return this.purchases;
   }
 
-  storeListFireBase(token: string,uid: string): Observable<any> {
-    return this.httpClient
-      .put(`${this.url}/${uid}/ShoppingList.json?auth=${token}`,this.purchases)
-  }
-
-  loadListFireBase(token: string,uid: string) {
-    return this.httpClient
-      .get(`${this.url}/${uid}/ShoppingList.json?auth=${token}`)
-      .do((list: Ingredient[]) => {
-        this.purchases = list;
-      });
-  }
+  // storeListFireBase(token: string,uid: string): Observable<any> {
+  //   return this.httpClient
+  //     .put(`${this.url}/${uid}/ShoppingList.json?auth=${token}`,this.purchases)
+  // }
+  //
+  // loadListFireBase(token: string,uid: string) {
+  //   return this.httpClient
+  //     .get(`${this.url}/${uid}/ShoppingList.json?auth=${token}`)
+  //     .do((list: Ingredient[]) => {
+  //       this.purchases = list;
+  //     });
+  // }
 }
