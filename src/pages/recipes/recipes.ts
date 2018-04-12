@@ -53,13 +53,13 @@ export class RecipesPage {
       });
       loader.present();
 
-      this.recipeService.loadRecipeFireBase(token,currentUser.uid)
-        .subscribe((list: Recipe[]) => {
-          this.recipes = list;
-          loader.dismiss();
-        },(e) => {
-          this.errorHandler(e);
-        })
+      // this.recipeService.loadRecipeFireBase(token,currentUser.uid)
+      //   .subscribe((list: Recipe[]) => {
+      //     this.recipes = list;
+      //     loader.dismiss();
+      //   },(e) => {
+      //     this.errorHandler(e);
+      //   })
     } else {
 
       let loader = this.loadingCtrl.create({
@@ -68,12 +68,12 @@ export class RecipesPage {
       });
       loader.present();
 
-      this.recipeService.storeRecipeFireBase(token,currentUser.uid)
-        .subscribe((d) => {
-          loader.dismiss();
-        },(e) => {
-          this.errorHandler(e);
-        });
+      // this.recipeService.storeRecipeFireBase(token,currentUser.uid)
+      //   .subscribe((d) => {
+      //     loader.dismiss();
+      //   },(e) => {
+      //     this.errorHandler(e);
+      //   });
     }
   }
 

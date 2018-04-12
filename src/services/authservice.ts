@@ -15,9 +15,9 @@ export class Authservice {
   // logOutFireBase(): Promise<any> {
   //   return firebase.auth().signOut();
   // }
-  //
-  // getActiveUser() {
-  //   return firebase.auth().currentUser;
-  // }
-//  test lala
+
+  getActiveUser() {
+    return firebase.auth().currentUser;
+  }
+
 }

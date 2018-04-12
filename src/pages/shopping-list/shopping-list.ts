@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AlertController, IonicPage, LoadingController, PopoverController} from 'ionic-angular';
 import {NgForm} from "@angular/forms";
 import {ShoppingListService} from "../../services/ShoppingList";
@@ -11,9 +11,10 @@ import {Authservice} from "../../services/authservice";
   selector: 'page-shopping-list',
   templateUrl: 'shopping-list.html',
 })
-export class ShoppingListPage {
+export class ShoppingListPage implements  OnInit {
   purchases:Ingredient[];
   slOption =  SlOptions ;
+  todos:any[];
   constructor(private shoppingList:ShoppingListService,
               private popOverCtrl:PopoverController,
               private authService:Authservice,
@@ -24,6 +25,14 @@ export class ShoppingListPage {
 
   ionViewWillEnter() {
     this.purchases = this.shoppingList.getPurchases();
+
+  }
+
+  ngOnInit() {
+    this.shoppingList.loadTodos().subscribe((todos: any) => {
+      console.log(todos);
+      this.todos = todos.todos
+    });
   }
 
   onAddItem(form:NgForm) {
@@ -59,17 +68,17 @@ export class ShoppingListPage {
       });
       loader.present();
 
-      this.shoppingListService.loadListFireBase(token,currentUser.uid)
-        .subscribe((list: Ingredient[]) => {
-          if(list) {
-            this.purchases = list;
-          } else {
-            this.purchases = [];
-          }
-          loader.dismiss();
-        },(e) => {
-          this.errorHandler(e);
-        })
+      // this.shoppingListService.loadListFireBase(token,currentUser.uid)
+      //   .subscribe((list: Ingredient[]) => {
+      //     if(list) {
+      //       this.purchases = list;
+      //     } else {
+      //       this.purchases = [];
+      //     }
+      //     loader.dismiss();
+      //   },(e) => {
+      //     this.errorHandler(e);
+      //   })
     } else {
 
       let loader = this.loadingCtrl.create({
@@ -78,12 +87,12 @@ export class ShoppingListPage {
       });
       loader.present();
 
-      this.shoppingListService.storeListFireBase(token,currentUser.uid)
-        .subscribe((d) => {
-          loader.dismiss();
-        },(e) => {
-          this.errorHandler(e);
-        });
+      // this.shoppingListService.storeListFireBase(token,currentUser.uid)
+      //   .subscribe((d) => {
+      //     loader.dismiss();
+      //   },(e) => {
+      //     this.errorHandler(e);
+      //   });
     }
   }
 
